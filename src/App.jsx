@@ -1,6 +1,7 @@
 import Snaps from "./components/Snaps";
 import Camera from "./components/Camera";
 import Navbar from "./components/Navbar";
+import Searchbox from "./components/Searchbox";
 
 import {
   BrowserRouter as Router,
@@ -16,6 +17,7 @@ function App() {
 
   const [isUploading, setIsUploading] = useState(false);
   const [snaps, setSnaps] = useState(getInitialSnaps);
+  const [searchText, setSearchText] = useState('');
 
   /**
    * @param {string} img
@@ -32,7 +34,7 @@ function App() {
      * Customize this prompt to get the data you want from the image.
      * Specify how you'd like it formatted as well.
      */
-    const prompt = `What is this?`;
+    const prompt = `What text is in this image?`;
     const result = await getStructuredDataFromImage(img, prompt);
 
     /**
@@ -61,7 +63,8 @@ function App() {
                   Scanning Snap...
                 </div>
               )}
-              <Snaps snaps={snaps} />
+              <Searchbox searchText={searchText} setSearchText={setSearchText}/>
+              <Snaps snaps={snaps} searchText={searchText} />
             </div>
           }
         />
