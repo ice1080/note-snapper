@@ -11,6 +11,7 @@ import {
 } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getStructuredDataFromImage } from "./api";
+import Promptbox from "./components/Promptbox";
 
 function App() {
   const navigate = useNavigate();
@@ -18,6 +19,7 @@ function App() {
   const [isUploading, setIsUploading] = useState(false);
   const [snaps, setSnaps] = useState(getInitialSnaps);
   const [searchText, setSearchText] = useState('');
+  const [prompt, setPrompt] = useState('What text is in this image?');
 
   /**
    * @param {string} img
@@ -34,7 +36,6 @@ function App() {
      * Customize this prompt to get the data you want from the image.
      * Specify how you'd like it formatted as well.
      */
-    const prompt = `What text is in this image?`;
     const result = await getStructuredDataFromImage(img, prompt);
 
     /**
@@ -63,7 +64,13 @@ function App() {
                   Scanning Snap...
                 </div>
               )}
+              <br/>
+              <Promptbox prompt={prompt} setPrompt={setPrompt}/>
+              <br/>
               <Searchbox searchText={searchText} setSearchText={setSearchText}/>
+              <br/>
+              Next thing we planned on doing was modifying the prompt for an image.
+              <br/>
               <Snaps snaps={snaps} searchText={searchText} />
             </div>
           }

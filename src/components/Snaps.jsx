@@ -9,7 +9,6 @@ export default function Snaps({ snaps, searchText }) {
     includeScore: true
   }
   const fuse = new Fuse(snaps, fuseOptions)
-  console.log('search output', searchText, fuse.search(searchText))
 
   const outputList = searchText ? fuse.search(searchText) : snaps.map(el => {return {item: el}})
 
