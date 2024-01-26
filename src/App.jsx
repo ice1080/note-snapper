@@ -46,6 +46,19 @@ function App() {
     setIsUploading(false);
   }
 
+  const onKeyDown = (event) => {
+    if (event.code === 'Space') {
+      navigate("/camera");
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.removeEventListener('keydown', onKeyDown);
+    };
+  }, [])
+
   useEffect(() => {
     localStorage.setItem("results", JSON.stringify(snaps));
   }, [snaps]);
@@ -69,7 +82,7 @@ function App() {
               <br/>
               <Searchbox searchText={searchText} setSearchText={setSearchText}/>
               <br/>
-              Next thing we planned on doing was modifying the prompt for an image.
+              Next thing we planned on doing was modifying the prompt for a previous image.
               <br/>
               <Snaps snaps={snaps} searchText={searchText} />
             </div>

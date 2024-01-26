@@ -5,7 +5,7 @@ export default function () {
   return (
     <nav className="flex items-center w-screen bg-blue-500 text-white font-bold p-2">
       <Link to="/" className="p-4">
-        Note Snapper
+        Note Snapper (press space to take new snap)
       </Link>
       <div className="grow"></div>
       <Link
